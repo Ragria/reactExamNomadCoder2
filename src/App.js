@@ -1,30 +1,35 @@
 import React, { useState, useEffect } from "react";
-import Button from "./Button";
-import styled from "./App.module.css"
-
 
 function App() {
-  const [counter, setValue] = useState(0) 
-  const [keyword, setKeyword] = useState("")
-  const onClick = () =>  setValue((prev) => prev + 1)
-  const onChange = (e) => {setKeyword(e.target.value)}
-  useEffect(() => {
-    console.log("11")
-  }, []);
-  useEffect(() => {
-    console.log("22")
-  }, [counter]);
-  useEffect(() => {
-    console.log("33")
-  }, [keyword]);
-  useEffect(() => {
-    console.log("4")
-  }, [keyword, counter]);
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([])
+  const onChange = (e) => setToDo(e.target.value);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if(toDo === ""){
+      return;
+    }
+    setToDo("")
+    setToDos((currentArray) =>[toDo, ...currentArray] )
+  }
   return (
     <div>
-      <input value={keyword} onChange={onChange} type="text" placeholder="Search here..." />
-      <h1>{counter}</h1>
-      <button onClick={onClick}>click me</button>
+      <h1>My To Dos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input 
+          onChange={onChange} 
+          value={toDo} 
+          type="text" 
+          placeholder="Write your to do..." 
+        />
+        <button>Add To Do</button>
+      </form>
+      <hr/>
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}>{index}</li>
+        ))}
+      </ul> 
     </div>
   );
 }
