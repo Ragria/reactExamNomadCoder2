@@ -15,7 +15,7 @@ function Movie({coverImg, title, summary, genres}){
         
     )
 }
-
+ 
 Movie.propTypes = {
    coverImg : PropTypes.string.isRequired,
    title : PropTypes.string.isRequired,
