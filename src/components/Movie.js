@@ -24,4 +24,4 @@ Movie.propTypes = {
    summary : PropTypes.string.isRequired,
    genres : PropTypes.arrayOf(PropTypes.string).isRequired
 };
-export default Movie;
+export default Movie; 
